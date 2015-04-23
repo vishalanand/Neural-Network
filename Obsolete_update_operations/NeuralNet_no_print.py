@@ -61,7 +61,7 @@ def slidingWindow(sequence,winSize,step=1):
 
 		cnt = 1
 		repetition = 1
-		while (cnt!=0 and repetition<2) :
+		while (cnt!=0 and repetition<3) :
 			#print "\n\n\ncnt", cnt, " repetition", repetition
 			repetition = repetition + 1
 			cnt = 0
@@ -369,29 +369,20 @@ def word_vec_process():
 	lines_matrix = [line.strip() for line in open(args.input_file)]
 	lines_matrix = [line.split() for line in lines_matrix]
 	
-	for rept in range(0, args.iteration_count):
-		print "Iteration", rept+1
-		line_id = 1
-		for lines_matrix_each in lines_matrix:
-			lines_matrix_each = [line.split() for line in lines_matrix_each]
-			words_matrix = [item for sublist in lines_matrix_each for item in sublist]
-			
-			if(not args.uppercase):
-				words_matrix = [x.lower() for x in words_matrix]
-			
-			#print "We are sending : "
-			#print words_matrix
-			padding = 3-2;
-			words_matrix = ["DGDD"]*padding + words_matrix + ["DGDD"]*padding
-			#print words_matrix
-			#print "This is the main file in consideration"
-			slidingWindow(words_matrix,args.window_size)
-			print "line", line_id, "finished"
-			line_id = line_id + 1
-			#return
-			#Remove the preceding line for complete functioning
-		#return
-		print
+	for lines_matrix_each in lines_matrix:
+		lines_matrix_each = [line.split() for line in lines_matrix_each]
+		words_matrix = [item for sublist in lines_matrix_each for item in sublist]
+		
+		if(not args.uppercase):
+			words_matrix = [x.lower() for x in words_matrix]
+		
+		#print "We are sending : "
+		#print words_matrix
+		padding = 3-2;
+		words_matrix = ["DGDD"]*padding + words_matrix + ["DGDD"]*padding
+		slidingWindow(words_matrix,args.window_size)
+		return
+		#Remove the preceding line for complete functioning
 	return
 	lines_matrix = [line.split() for line in lines_matrix]
 	words_matrix = [item for sublist in lines_matrix for item in sublist]
