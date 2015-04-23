@@ -1,0 +1,2 @@
+This is a sample text file for window-based deep learning technique
+This is another line for better window-based approach
